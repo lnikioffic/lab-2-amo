@@ -1,7 +1,15 @@
 #!/bin/bash
 set -x
 
-venv\Scripts\activate
+if [ ! -d "venv" ]; then
+    echo "Создаём виртуальное окружение..."
+    python3 -m venv venv
+fi
+
+source venv/bin/activate
+
+pip install --upgrade pip
+pip insatll -r requirements.txt
 
 # Запуск скрипта генерации данных
 python data_creation.py
